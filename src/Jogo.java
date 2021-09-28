@@ -43,6 +43,7 @@ public class Jogo {
 
         Casa casa2 = tabuleiro.getCasa(7, 7);
         Peca peca2 = new Peca(casa2, Peca.DAMA_VERMELHA);
+        */
     }
     
     /**
