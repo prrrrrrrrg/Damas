@@ -15,6 +15,7 @@ public class JanelaPrincipal extends JFrame {
 
     private Jogo jogo;
     private boolean primeiroClique;
+    private boolean turnoSwitch;
     private CasaGUI casaClicadaOrigem;
     private CasaGUI casaClicadaDestino;
     
@@ -24,11 +25,29 @@ public class JanelaPrincipal extends JFrame {
      * @param casaClicada Casa que o jogador clicou.
      */
     public void reagir(CasaGUI casaClicada) {
+
         if (primeiroClique) {
             if (casaClicada.possuiPeca()) {
-                casaClicadaOrigem = casaClicada;
-                casaClicadaOrigem.destacar();
-                primeiroClique = false;
+                if (turnoSwitch == false) {
+                    if (casaClicada.getCorPeca() == 0) {
+                        casaClicadaOrigem = casaClicada;
+                        casaClicadaOrigem.destacar();
+                        primeiroClique = false;
+                    }
+                    else {
+                        JOptionPane.showMessageDialog(this, "Vez do Jogador 1. Clique em uma peça branca.");
+                    }
+                }
+                else {
+                    if (casaClicada.getCorPeca() == 1) {
+                        casaClicadaOrigem = casaClicada;
+                        casaClicadaOrigem.destacar();
+                        primeiroClique = false;
+                    }
+                    else {
+                        JOptionPane.showMessageDialog(this, "Vez do Jogador 2. Clique em uma peça vermelha.");
+                    }
+                }
             }
             else {
                 // clicou em uma posi�?o inv�lida, ent?o n?o faz nada.
@@ -45,6 +64,7 @@ public class JanelaPrincipal extends JFrame {
                         casaClicadaDestino.getPosicaoX(), casaClicadaDestino.getPosicaoY());
                 casaClicadaOrigem.atenuar();
                 primeiroClique = true;
+                turnoSwitch = !turnoSwitch;
                 atualizar();
             }
         }
@@ -58,6 +78,7 @@ public class JanelaPrincipal extends JFrame {
         initComponents();
 
         this.primeiroClique = true;
+        this.turnoSwitch = false;
         this.casaClicadaOrigem = null;
         this.casaClicadaDestino = null;
         criarNovoJogo();
