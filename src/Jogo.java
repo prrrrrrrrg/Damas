@@ -19,6 +19,25 @@ public class Jogo {
      * Utilizado na inicializa�ao do jogo.
      */
     private void criarPecas() {
+        for (int r = 0; r <= 2; r++) { // posiciona LINHA
+            int c = 0; // cria variável COLUNA
+            if ((r % 2) != 0) c++; // aumenta COLUNA por 1 se LINHA for IMPAR (ou seja, começa com casa branca)
+            for (; c <= 7; c += 2) { //posiciona COLUNA
+                Casa casaN = tabuleiro.getCasa(c, r);
+                Peca pecaN = new Peca(casaN, Peca.PEDRA_BRANCA);
+            }
+        }
+
+        for (int r = 7; r >= 5; r--) {
+            int c = 0; 
+            if ((r % 2) != 0) c++; 
+            for (; c <= 7; c += 2) { 
+                Casa casaN = tabuleiro.getCasa(c, r);
+                Peca pecaN = new Peca(casaN, Peca.PEDRA_VERMELHA);
+            }
+        }
+
+        /*
         Casa casa1 = tabuleiro.getCasa(0, 0);
         Peca peca1 = new Peca(casa1, Peca.PEDRA_BRANCA);
 
