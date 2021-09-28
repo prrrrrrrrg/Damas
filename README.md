@@ -2,9 +2,9 @@
 
 
 1. Objetivo: imobilizar ou capturar todas as peças do adversário.
-2. O Jogo de Damas é praticado em um tabuleiro de 64 casas ou de 100 casas, claras e escuras.
-3. A grande diagonal (escura), deve ficar sempre à esquerda de cada jogador.
-4. O lance inicial cabe sempre ao jogador que estiver com as peças claras.
+2. ~~O Jogo de Damas é praticado em um tabuleiro de 64 casas~~ ou de 100 casas, claras e escuras.
+3. ~~A grande diagonal (escura), deve ficar sempre à esquerda de cada jogador.~~
+4. ~~O lance inicial cabe sempre ao jogador que estiver com as peças claras.~~
 5. A pedra anda só para frente, uma casa de cada vez.
 6. Quando a pedra atinge a última linha do tabuleiro, concluindo o lance nas casas de coroação, ela é promovida à Dama.
 7. A Dama é uma peça de movimentos mais amplos.
