@@ -36,12 +36,17 @@ public class JanelaPrincipal extends JFrame {
             }
         }
         else {
-            casaClicadaDestino = casaClicada;
-            jogo.moverPeca(casaClicadaOrigem.getPosicaoX(), casaClicadaOrigem.getPosicaoY(),
-                    casaClicadaDestino.getPosicaoX(), casaClicadaDestino.getPosicaoY());
-            casaClicadaOrigem.atenuar();
-            primeiroClique = true;
-            atualizar();
+            if (casaClicada.possuiPeca()) {
+                JOptionPane.showMessageDialog(this, "Não é permitido mover para cima de outras peças.");
+            }
+            else {
+                casaClicadaDestino = casaClicada;
+                jogo.moverPeca(casaClicadaOrigem.getPosicaoX(), casaClicadaOrigem.getPosicaoY(),
+                        casaClicadaDestino.getPosicaoX(), casaClicadaDestino.getPosicaoY());
+                casaClicadaOrigem.atenuar();
+                primeiroClique = true;
+                atualizar();
+            }
         }
     }
     
