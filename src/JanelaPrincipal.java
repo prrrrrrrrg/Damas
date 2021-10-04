@@ -60,12 +60,17 @@ public class JanelaPrincipal extends JFrame {
             }
             else {
                 casaClicadaDestino = casaClicada;
-                jogo.moverPeca(casaClicadaOrigem.getPosicaoX(), casaClicadaOrigem.getPosicaoY(),
-                        casaClicadaDestino.getPosicaoX(), casaClicadaDestino.getPosicaoY());
-                casaClicadaOrigem.atenuar();
-                primeiroClique = true;
-                turnoSwitch = !turnoSwitch;
-                atualizar();
+                if (jogo.movementCheck(casaClicadaOrigem.getPosicaoX(), casaClicadaOrigem.getPosicaoY(), casaClicadaDestino.getPosicaoX(), casaClicadaDestino.getPosicaoY()) == 1) {
+                    jogo.moverPeca(casaClicadaOrigem.getPosicaoX(), casaClicadaOrigem.getPosicaoY(),
+                            casaClicadaDestino.getPosicaoX(), casaClicadaDestino.getPosicaoY());
+                    casaClicadaOrigem.atenuar();
+                    primeiroClique = true;
+                    turnoSwitch = !turnoSwitch;
+                    atualizar();
+                }
+                else {
+                    JOptionPane.showMessageDialog(this, "Movimento inválido.");
+                }
             }
         }
     }

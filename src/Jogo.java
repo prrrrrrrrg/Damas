@@ -61,7 +61,17 @@ public class Jogo {
         Peca peca = origem.getPeca();
         peca.mover(destino);
     }
-    
+
+    /* checar se movimento é legal ou não */
+    public int movementCheck(int origemX, int origemY, int destinoX, int destinoY) {
+        if (!((destinoX == origemX) || (destinoY == origemY))) {
+            return 1;
+        }
+        else {
+            return 0;
+        }
+    }
+
     /**
      * @return o Tabuleiro em jogo.
      */
