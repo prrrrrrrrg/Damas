@@ -31,6 +31,10 @@ public class CasaGUI extends JButton {
     public static final int SEM_PECA = -1;
     public static final int PECA_BRANCA = 0;
     public static final int PECA_VERMELHA = 1;
+
+    // Tipos das pecas
+    public static final int PEDRA = 0;
+    public static final int DAMA = 1;
     
 
     private int x;
@@ -97,6 +101,20 @@ public class CasaGUI extends JButton {
         }
         else if (icone == PEDRA_VERMELHA || icone == DAMA_VERMELHA) {
              return PECA_VERMELHA;
+        }
+        else {
+            return SEM_PECA;
+        }
+    }
+
+    public int getTipoPeca() {
+        Icon icone = getIcon();
+
+        if (icone == PEDRA_BRANCA || icone == PEDRA_VERMELHA) {
+            return PEDRA;
+        }
+        else if (icone == DAMA_BRANCA || icone == DAMA_VERMELHA) {
+            return DAMA;
         }
         else {
             return SEM_PECA;

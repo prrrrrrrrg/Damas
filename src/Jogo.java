@@ -63,24 +63,26 @@ public class Jogo {
     }
 
     /* checar se movimento é legal ou não */
-    public int movementCheck(int color, int origemX, int origemY, int destinoX, int destinoY) {
+    public int movementCheck(int tipo, int color, int origemX, int origemY, int destinoX, int destinoY) {
         if (!((destinoX == origemX) || (destinoY == origemY))) {
-            if (color == 0) {
-                if (destinoY > origemY) {
-                    return 1;
-                }
-            }
-            else if (color == 1) {
-                if (destinoY < origemY) {
-                    return 1;
-                }
+            if (tipo == 1) {
+                return 1;
             }
             else {
-                return -1;
+                if (color == 0) {
+                    if (destinoY == origemY + 1) {
+                        return 1;
+                    }
+                    else return 0;
+                }
+                else if (color == 1) {
+                    if (destinoY == origemY - 1) {
+                        return 1;
+                    }
+                    else return 0;
+                }
+                else return -1;
             }
-        }
-        else {
-            return 0;
         }
         return -1;
     }

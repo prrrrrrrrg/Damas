@@ -60,7 +60,7 @@ public class JanelaPrincipal extends JFrame {
             }
             else {
                 casaClicadaDestino = casaClicada;
-                if (jogo.movementCheck(casaClicadaOrigem.getCorPeca(), casaClicadaOrigem.getPosicaoX(), casaClicadaOrigem.getPosicaoY(), casaClicadaDestino.getPosicaoX(), casaClicadaDestino.getPosicaoY()) == 1) {
+                if (jogo.movementCheck(casaClicadaOrigem.getTipoPeca(), casaClicadaOrigem.getCorPeca(), casaClicadaOrigem.getPosicaoX(), casaClicadaOrigem.getPosicaoY(), casaClicadaDestino.getPosicaoX(), casaClicadaDestino.getPosicaoY()) == 1) {
                     jogo.moverPeca(casaClicadaOrigem.getPosicaoX(), casaClicadaOrigem.getPosicaoY(),
                             casaClicadaDestino.getPosicaoX(), casaClicadaDestino.getPosicaoY());
                     casaClicadaOrigem.atenuar();
