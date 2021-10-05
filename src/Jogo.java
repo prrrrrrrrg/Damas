@@ -1,3 +1,4 @@
+import java.util.Vector;
 
 /**
  * Armazena o tabuleiro e responsavel por posicionar as pecas.
@@ -85,6 +86,26 @@ public class Jogo {
             }
         }
         return -1;
+    }
+
+    public Casa[] movementList(int tipo, int color, int origemX, int origemY) {
+        Vector moves = new Vector();
+        for (int destinoX = 0; destinoX <= 7; destinoX++) {
+            for (int destinoY = 0; destinoY <= 7; destinoY++) {
+                if (movementCheck(tipo, color, origemX, origemY, destinoX, destinoY) == 1) {
+                    moves.addElement(tabuleiro.getCasa(destinoX, destinoY));
+                }
+            }
+        }
+    
+        if (moves.size() == 0) return null;
+        else {
+            Casa[] moveListArray = new Casa[moves.size()];
+            for (int i = 0; i < moves.size(); i++) {
+                moveListArray[i] = (Casa) moves.elementAt(i);
+            }
+            return moveListArray;
+        }
     }
 
     /**
