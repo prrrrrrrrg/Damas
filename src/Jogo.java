@@ -24,7 +24,7 @@ public class Jogo {
             if ((r % 2) != 0) c++; // aumenta COLUNA por 1 se LINHA for IMPAR (ou seja, começa com casa branca)
             for (; c <= 7; c += 2) { //posiciona COLUNA
                 Casa casaN = tabuleiro.getCasa(c, r);
-                Peca pecaN = new Peca(casaN, Peca.PEDRA_BRANCA);
+                Peca pecaN = new Peca(casaN, 0);
             }
         }
 
@@ -33,7 +33,7 @@ public class Jogo {
             if ((r % 2) != 0) c++; 
             for (; c <= 7; c += 2) { 
                 Casa casaN = tabuleiro.getCasa(c, r);
-                Peca pecaN = new Peca(casaN, Peca.PEDRA_VERMELHA);
+                Peca pecaN = new Peca(casaN, 2);
             }
         }
 
@@ -55,13 +55,18 @@ public class Jogo {
      * @param destinoX linha da Casa de destino.
      * @param destinoY coluna da Casa de destino.
      */
+    public static boolean vezBranca = true;
+    //comeca com as brancas.
     public void moverPeca(int origemX, int origemY, int destinoX, int destinoY) {
         Casa origem = tabuleiro.getCasa(origemX, origemY);
         Casa destino = tabuleiro.getCasa(destinoX, destinoY);
         Peca peca = origem.getPeca();
-        peca.mover(destino);
-    }
     
+        if (peca.podeMover(destino)) {
+            peca.mover(destino);
+            vezBranca = !vezBranca;
+        }
+    }
     /**
      * @return o Tabuleiro em jogo.
      */

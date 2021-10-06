@@ -19,3 +19,12 @@
 16. Opcional: Empate – 64 casas - Após 20 (vinte) lances sucessivos de Damas de cada jogador, sem captura ou deslocamento de pedra, a partida é declarada empatada. 100 casas - Após 25 (vinte e cinco) lances sucessivos de Damas de cada jogador, sem captura ou deslocamento de pedra, a partida é declarada empatada.
 17. A dama no último movimento de captura pode parar em qualquer casa livre na diagonal em que está capturando. A dama não é obrigada a parar na casa seguinte após a última peça capturada.
 18. Opcional: Finais de: 2 damas contra 2 damas; 2 damas contra uma; 2 damas contra uma dama e uma pedra; uma dama contra uma dama e uma dama contra uma dama e uma pedra, são declarados empatados após 5 lances de cada jogador.
+
+Feito por Lucas Regis Alves e Luiz Gabriel Alcântara Pontes de Lemos
+
+Mudancas em branch "Testando1":
+    - Esse detalhe adicional aqui no README
+    - Mudei de PEDRA_BRANCA ou PEDRA_VERMELHA para 0 e 2 respectivamente, quando colocando pecas novas no jogo
+    - limitacao de movimento para que pecas se movam diagonalmente
+    - turnoSwitch agora é vezBranca em "Jogo" ao inves de "JanelaPrincipal", mudar a localização ajudou a resolver um problema
+    -

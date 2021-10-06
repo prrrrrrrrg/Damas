@@ -43,4 +43,45 @@ public class Peca {
     public int getTipo() {
         return tipo;
     }
+
+    public boolean podeMover(Casa destino) {
+        //Se peca branca, ver se deltaX = 1 e deltaY = 1
+        //Se peca vermelha, ver se deltaX = -1 e deltaY = -1
+        //Se dama, ver se modulo de deltaX = modulo de deltaY
+        int deltaY = destino.getY() - casa.getY();
+        int deltaX = destino.getX() - casa.getX();
+
+        // verificar se e dama
+        if (tipo == 1 || tipo == 3) {
+            if (Math.abs(deltaY) == Math.abs(deltaX)) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        else {
+            //cor da pedra
+            if (tipo == 0) {
+                //pedra branca
+                if (deltaY == 1 && Math.abs(deltaX) == 1) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+            else {
+                //pedra vermelha
+                if (deltaY == -1 && Math.abs(deltaX) == 1) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+        
+
+        }
+    }
 }
