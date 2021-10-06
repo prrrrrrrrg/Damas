@@ -61,6 +61,22 @@ public class Jogo {
         Peca peca = origem.getPeca();
         peca.mover(destino);
     }
+
+    /**
+     * Checa se o jogo foi ganho ou não.
+     * Se não houver peças brancas no tabuleiro, @return 0 (VITÓRIA VERMELHA)
+     * Se não houver peças vermelhas no tabuleiro, @return 1 (VITÓRIA BRANCA)
+     * @return -1: ninguém ganhou ainda
+     */
+    public int checkGameState() {
+        if (tabuleiro.getBoardState()[0] == 0) {
+            return 0;
+        }
+        if (tabuleiro.getBoardState()[1] == 0) {
+            return 1;
+        }
+        return -1;
+    }
     
     /**
      * @return o Tabuleiro em jogo.

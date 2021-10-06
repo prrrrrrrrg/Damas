@@ -27,4 +27,26 @@ public class Tabuleiro {
     public Casa getCasa(int x, int y) {
         return casas[x][y];
     }
+
+    /**
+     * @return Array[1] com a quantidade de peças no tabuleiro.
+     */
+    public int[] getBoardState() {
+        int[] pecaContador = new int[1];
+
+        for (int i = 0; i <= 7; i++) {
+            for (int j = 0; i <= 7; i++) {
+                Casa casaChecker = getCasa(i, j);
+                Peca pecaChecker = casaChecker.getPeca();
+                if ((pecaChecker.getTipo() == 0) || (pecaChecker.getTipo() == 1)) {
+                    pecaContador[0]++;
+                }
+                if ((pecaChecker.getTipo() == 2) || (pecaChecker.getTipo() == 3)) {
+                    pecaContador[1]++;
+                }
+            }
+        }
+
+        return pecaContador;
+    }
 }
