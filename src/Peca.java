@@ -28,8 +28,30 @@ public class Peca {
      */
     public void mover(Casa destino) {
         casa.removerPeca();
+        escaladaSocial(destino);
         destino.colocarPeca(this);
         casa = destino;
+    }
+
+    /**
+     * Checa se uma pedra pode ser promovida para dama, e se sim, promove ela.
+     * @param destino
+     */
+    public void escaladaSocial(Casa destino) {
+        if (getTipo() == 0) {
+            if (destino.getY() == 7) {
+                setTipo(1);
+            }
+        }
+        if (getTipo() == 2) {
+            if (destino.getY() == 0) {
+                setTipo(3);
+            }
+        }
+    }
+
+    public void setTipo(int novoTipo) {
+        tipo = novoTipo;
     }
 
     /**
