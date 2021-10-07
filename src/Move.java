@@ -31,47 +31,79 @@ public class Move {
         if (Math.abs(deltaX) == Math.abs(deltaY)) {
             if (destino.getPeca() == null) {
                 if (origem.getPeca().getTipo() == 0) {
-                    if (destino.getY() > origem.getY()) {
-                        if (deltaY == 1) {
+                    if (deltaY == 1) {
+                        if (destino.getY() > origem.getY()) {
                             return true;
                         }
-                        else if (deltaY == 2) {
-                            if (deltaX > 0) {
-                                if (tabuleiro.getCasa(destino.getX() - 1, destino.getY() - 1).getPeca().getCor()) {
-                                    podeMatar = 1;
-                                    vitima = tabuleiro.getCasa(destino.getX() - 1, destino.getY() - 1);
-                                    return true;
-                                }
+                    }
+                    else if (deltaY == 2) {
+                        if (deltaX > 0) {
+                            if (tabuleiro.getCasa(destino.getX() - 1, destino.getY() - 1).getPeca().getCor()) {
+                                podeMatar = 1;
+                                vitima = tabuleiro.getCasa(destino.getX() - 1, destino.getY() - 1);
+                                return true;
                             }
-                            else if (deltaX < 0) {
-                                if (tabuleiro.getCasa(destino.getX() + 1, destino.getY() - 1).getPeca().getCor()) {
-                                    podeMatar = 1;
-                                    vitima = tabuleiro.getCasa(destino.getX() + 1, destino.getY() - 1);
-                                    return true;
-                                }
+                        }
+                        else if (deltaX < 0) {
+                            if (tabuleiro.getCasa(destino.getX() + 1, destino.getY() - 1).getPeca().getCor()) {
+                                podeMatar = 1;
+                                vitima = tabuleiro.getCasa(destino.getX() + 1, destino.getY() - 1);
+                                return true;
+                            }
+                        }
+                    }
+                    else if (deltaY == -2) {
+                        if (deltaX > 0) {
+                            if (tabuleiro.getCasa(destino.getX() - 1, destino.getY() + 1).getPeca().getCor()) {
+                                podeMatar = 1;
+                                vitima = tabuleiro.getCasa(destino.getX() - 1, destino.getY() + 1);
+                                return true;
+                            }
+                        }
+                        else if (deltaX < 0) {
+                            if (tabuleiro.getCasa(destino.getX() + 1, destino.getY() + 1).getPeca().getCor()) {
+                                podeMatar = 1;
+                                vitima = tabuleiro.getCasa(destino.getX() + 1, destino.getY() + 1);
+                                return true;
                             }
                         }
                     }
                 }
-                else if (origem.getPeca().getTipo() == 2) {
-                    if (destino.getY() < origem.getY()) {
-                        if (destino.getY() - origem.getY() == -1) {
+                if (origem.getPeca().getTipo() == 2) {
+                    if (deltaY == -1) {
+                        if (destino.getY() < origem.getY()) {
                             return true;
                         }
-                        else if (destino.getY() - origem.getY() == -2) {
-                            if (destino.getX() - origem.getX() > 0) {
-                                if (!(tabuleiro.getCasa(destino.getX() - 1, destino.getY() + 1).getPeca().getCor())) {
-                                    podeMatar = 1;
-                                    vitima = tabuleiro.getCasa(destino.getX() - 1, destino.getY() + 1);
-                                    return true;
-                                }
+                    }
+                    else if (deltaY == 2) {
+                        if (deltaX > 0) {
+                            if (!tabuleiro.getCasa(destino.getX() - 1, destino.getY() - 1).getPeca().getCor()) {
+                                podeMatar = 1;
+                                vitima = tabuleiro.getCasa(destino.getX() - 1, destino.getY() - 1);
+                                return true;
                             }
-                            else if (destino.getX() - origem.getX() < 0) {
-                                if (!(tabuleiro.getCasa(destino.getX() + 1, destino.getY() + 1).getPeca().getCor())) {
-                                    podeMatar = 1;
-                                    vitima = tabuleiro.getCasa(destino.getX() + 1, destino.getY() + 1);
-                                    return true;
-                                }
+                        }
+                        else if (deltaX < 0) {
+                            if (!tabuleiro.getCasa(destino.getX() + 1, destino.getY() - 1).getPeca().getCor()) {
+                                podeMatar = 1;
+                                vitima = tabuleiro.getCasa(destino.getX() + 1, destino.getY() - 1);
+                                return true;
+                            }
+                        }
+                    }
+                    else if (deltaY == -2) {
+                        if (deltaX > 0) {
+                            if (!tabuleiro.getCasa(destino.getX() - 1, destino.getY() + 1).getPeca().getCor()) {
+                                podeMatar = 1;
+                                vitima = tabuleiro.getCasa(destino.getX() - 1, destino.getY() + 1);
+                                return true;
+                            }
+                        }
+                        else if (deltaX < 0) {
+                            if (!tabuleiro.getCasa(destino.getX() + 1, destino.getY() + 1).getPeca().getCor()) {
+                                podeMatar = 1;
+                                vitima = tabuleiro.getCasa(destino.getX() + 1, destino.getY() + 1);
+                                return true;
                             }
                         }
                     }
@@ -174,78 +206,6 @@ public class Move {
                         }
                         return true;
                     }
-                    /*else if ((destino.getX() > origem.getX()) && (destino.getY() < origem.getY())) {
-                        System.out.println("PASS 2 SUCCEEDED");
-                        int cursorX = destino.getX();
-                        int cursorY = destino.getY();
-                        while ((cursorX > origem.getX()) && (cursorY < origem.getY())) {
-                            System.out.println("PASS 3 SUCCEEDED... LOADING...");
-                            if (tabuleiro.getCasa(cursorX, cursorY).getPeca() != null) {
-                                System.out.println("PASS 4 SUCCEEDED");
-                                if ((tabuleiro.getCasa(cursorX - 1, cursorY + 1).getPeca() != null) && (tabuleiro.getCasa(cursorX - 1, cursorY + 1) != origem)) {
-                                    System.out.println("PASS 5 SUCCEEDED");
-                                    return false;
-                                }
-                                else if ((destino.getX() - cursorX == 1) && (destino.getY() - cursorY == -1) && (tabuleiro.getCasa(cursorX, cursorY).getPeca().getCor() != origem.getPeca().getCor())) {
-                                    System.out.println("PASS 5B SUCCEEDED");
-                                    podeMatar = 1;
-                                    vitima = tabuleiro.getCasa(cursorX, cursorY);
-                                    return true;
-                                }
-                                else return false;
-                            }
-                            cursorX--; cursorY++;
-                        }
-                        return true;
-                    }
-                    else if ((destino.getX() < origem.getX()) && (destino.getY() > origem.getY())) {
-                        System.out.println("PASS 2 SUCCEEDED");
-                        int cursorX = destino.getX();
-                        int cursorY = destino.getY();
-                        while ((cursorX < origem.getX()) && (cursorY > origem.getY())) {
-                            System.out.println("PASS 3 SUCCEEDED... LOADING...");
-                            if (tabuleiro.getCasa(cursorX, cursorY).getPeca() != null) {
-                                System.out.println("PASS 4 SUCCEEDED");
-                                if ((tabuleiro.getCasa(cursorX + 1, cursorY - 1).getPeca() != null) && (tabuleiro.getCasa(cursorX + 1, cursorY - 1) != origem)) {
-                                    System.out.println("PASS 5 SUCCEEDED");
-                                    return false;
-                                }
-                                else if ((destino.getX() - cursorX == -1) && (destino.getY() - cursorY == 1) && (tabuleiro.getCasa(cursorX, cursorY).getPeca().getCor() != origem.getPeca().getCor())) {
-                                    System.out.println("PASS 5B SUCCEEDED");
-                                    podeMatar = 1;
-                                    vitima = tabuleiro.getCasa(cursorX, cursorY);
-                                    return true;
-                                }
-                                else return false;
-                            }
-                            cursorX++; cursorY--;
-                        }
-                        return true;
-                    }
-                    else if ((destino.getX() < origem.getX()) && (destino.getY() < origem.getY())) {
-                        System.out.println("PASS 2 SUCCEEDED");
-                        int cursorX = destino.getX();
-                        int cursorY = destino.getY();
-                        while ((cursorX < origem.getX()) && (cursorY < origem.getY())) {
-                            System.out.println("PASS 3 SUCCEEDED... LOADING...");
-                            if (tabuleiro.getCasa(cursorX, cursorY).getPeca() != null) {
-                                System.out.println("PASS 4 SUCCEEDED");
-                                if ((tabuleiro.getCasa(cursorX + 1, cursorY + 1).getPeca() != null) && (tabuleiro.getCasa(cursorX + 1, cursorY + 1) != origem)) {
-                                    System.out.println("PASS 5 SUCCEEDED");
-                                    return false;
-                                }
-                                else if ((destino.getX() - cursorX == -1) && (destino.getY() - cursorY == -1) && (tabuleiro.getCasa(cursorX, cursorY).getPeca().getCor() != origem.getPeca().getCor())) {
-                                    System.out.println("PASS 5B SUCCEEDED");
-                                    podeMatar = 1;
-                                    vitima = tabuleiro.getCasa(cursorX, cursorY);
-                                    return true;
-                                }
-                                else return false;
-                            }
-                            cursorX++; cursorY++;
-                        }
-                        return true;
-                    }*/
                 }
             }
         }
