@@ -10,11 +10,13 @@ public class Move {
     private Casa origem;
     private Casa destino;
     private int podeMatar;
+    private Casa vitima;
     
     public Move(Casa origem, Casa destino) {
         this.origem = origem;
         this.destino = destino;
         this.podeMatar = 0;
+        this.vitima = null;
     }
 
     /**
@@ -37,12 +39,14 @@ public class Move {
                             if (deltaX > 0) {
                                 if (tabuleiro.getCasa(destino.getX() - 1, destino.getY() - 1).getPeca().getCor()) {
                                     podeMatar = 1;
+                                    vitima = tabuleiro.getCasa(destino.getX() - 1, destino.getY() - 1);
                                     return true;
                                 }
                             }
                             else if (deltaX < 0) {
                                 if (tabuleiro.getCasa(destino.getX() + 1, destino.getY() - 1).getPeca().getCor()) {
                                     podeMatar = 1;
+                                    vitima = tabuleiro.getCasa(destino.getX() + 1, destino.getY() - 1);
                                     return true;
                                 }
                             }
@@ -58,12 +62,14 @@ public class Move {
                             if (destino.getX() - origem.getX() > 0) {
                                 if (!(tabuleiro.getCasa(destino.getX() - 1, destino.getY() + 1).getPeca().getCor())) {
                                     podeMatar = 1;
+                                    vitima = tabuleiro.getCasa(destino.getX() - 1, destino.getY() + 1);
                                     return true;
                                 }
                             }
                             else if (destino.getX() - origem.getX() < 0) {
                                 if (!(tabuleiro.getCasa(destino.getX() + 1, destino.getY() + 1).getPeca().getCor())) {
                                     podeMatar = 1;
+                                    vitima = tabuleiro.getCasa(destino.getX() + 1, destino.getY() + 1);
                                     return true;
                                 }
                             }
