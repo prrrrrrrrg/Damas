@@ -66,6 +66,17 @@ public class Peca {
         return tipo;
     }
 
+    /**
+     * Retorna a cor da peça.
+     * @return false, se a cor for branca
+     * @return true, se a cor for vermelha
+     */
+    public boolean getCor() {
+        if ((tipo == 0) || (tipo == 1)) return false;
+        if ((tipo == 2) || (tipo == 3)) return true;
+        return false;
+    }
+
     public boolean podeMover(Casa destino) {
         //Se peca branca, ver se deltaX = 1 e deltaY = 1
         //Se peca vermelha, ver se deltaX = -1 e deltaY = -1

@@ -30,18 +30,18 @@ public class Move {
             if (destino.getPeca() == null) {
                 if (origem.getPeca().getTipo() == 0) {
                     if (destino.getY() > origem.getY()) {
-                        if (destino.getY() - origem.getY() == 1) {
+                        if (deltaY == 1) {
                             return true;
                         }
-                        else if (destino.getY() - origem.getY() == 2) {
-                            if (destino.getX() - origem.getX() > 0) {
-                                if (tabuleiro.getCasa(destino.getX() - 1, destino.getY() - 1).getPeca() != null) {
+                        else if (deltaY == 2) {
+                            if (deltaX > 0) {
+                                if (tabuleiro.getCasa(destino.getX() - 1, destino.getY() - 1).getPeca().getCor()) {
                                     podeMatar = 1;
                                     return true;
                                 }
                             }
-                            else if (destino.getX() - origem.getX() < 0) {
-                                if (tabuleiro.getCasa(destino.getX() + 1, destino.getY() - 1).getPeca() != null) {
+                            else if (deltaX < 0) {
+                                if (tabuleiro.getCasa(destino.getX() + 1, destino.getY() - 1).getPeca().getCor()) {
                                     podeMatar = 1;
                                     return true;
                                 }
@@ -56,13 +56,13 @@ public class Move {
                         }
                         else if (destino.getY() - origem.getY() == -2) {
                             if (destino.getX() - origem.getX() > 0) {
-                                if (tabuleiro.getCasa(destino.getX() - 1, destino.getY() + 1).getPeca() != null) {
+                                if (!(tabuleiro.getCasa(destino.getX() - 1, destino.getY() + 1).getPeca().getCor())) {
                                     podeMatar = 1;
                                     return true;
                                 }
                             }
                             else if (destino.getX() - origem.getX() < 0) {
-                                if (tabuleiro.getCasa(destino.getX() + 1, destino.getY() + 1).getPeca() != null) {
+                                if (!(tabuleiro.getCasa(destino.getX() + 1, destino.getY() + 1).getPeca().getCor())) {
                                     podeMatar = 1;
                                     return true;
                                 }
@@ -84,7 +84,7 @@ public class Move {
                                     System.out.println("PASS 5 SUCCEEDED");
                                     return false;
                                 }
-                                else if ((destino.getX() - cursorX == 1) && (destino.getY() - cursorY == 1)) {
+                                else if ((destino.getX() - cursorX == 1) && (destino.getY() - cursorY == 1) && (tabuleiro.getCasa(cursorX, cursorY).getPeca().getCor() != origem.getPeca().getCor())) {
                                     System.out.println("PASS 5B SUCCEEDED");
                                     podeMatar = 1;
                                     return true;
@@ -107,7 +107,7 @@ public class Move {
                                     System.out.println("PASS 5 SUCCEEDED");
                                     return false;
                                 }
-                                else if ((destino.getX() - cursorX == 1) && (destino.getY() - cursorY == -1)) {
+                                else if ((destino.getX() - cursorX == 1) && (destino.getY() - cursorY == -1) && (tabuleiro.getCasa(cursorX, cursorY).getPeca().getCor() != origem.getPeca().getCor())) {
                                     System.out.println("PASS 5B SUCCEEDED");
                                     podeMatar = 1;
                                     return true;
@@ -130,7 +130,7 @@ public class Move {
                                     System.out.println("PASS 5 SUCCEEDED");
                                     return false;
                                 }
-                                else if ((destino.getX() - cursorX == -1) && (destino.getY() - cursorY == 1)) {
+                                else if ((destino.getX() - cursorX == -1) && (destino.getY() - cursorY == 1) && (tabuleiro.getCasa(cursorX, cursorY).getPeca().getCor() != origem.getPeca().getCor())) {
                                     System.out.println("PASS 5B SUCCEEDED");
                                     podeMatar = 1;
                                     return true;
@@ -153,7 +153,7 @@ public class Move {
                                     System.out.println("PASS 5 SUCCEEDED");
                                     return false;
                                 }
-                                else if ((destino.getX() - cursorX == -1) && (destino.getY() - cursorY == -1)) {
+                                else if ((destino.getX() - cursorX == -1) && (destino.getY() - cursorY == -1) && (tabuleiro.getCasa(cursorX, cursorY).getPeca().getCor() != origem.getPeca().getCor())) {
                                     System.out.println("PASS 5B SUCCEEDED");
                                     podeMatar = 1;
                                     return true;
