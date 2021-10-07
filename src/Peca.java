@@ -30,7 +30,7 @@ public class Peca {
         casa.removerPeca();
 
         escaladaSocial(movimento.getDestino());
-        if (movimento.nivelDeViolencia() == 1) {
+        if (movimento.nivelDeViolencia()) {
             movimento.getVitima().removerPeca();
         }
 

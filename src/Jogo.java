@@ -57,6 +57,8 @@ public class Jogo {
      */
     public static boolean vezBranca = true;
     //comeca com as brancas.
+    public static boolean bloodthirst = false;
+    // quando esta variável é verdadeira, peças não podem fazer movimentos que não resultem em captura
     public void moverPeca(int origemX, int origemY, int destinoX, int destinoY) {
         Casa origem = tabuleiro.getCasa(origemX, origemY);
         Casa destino = tabuleiro.getCasa(destinoX, destinoY);
@@ -64,8 +66,34 @@ public class Jogo {
         Move movimento = new Move(origem, destino);
     
         if (movimento.podeMover(tabuleiro)) {
-            peca.mover(movimento);
-            vezBranca = !vezBranca;
+            System.out.println("PIECE CAN MOVE");
+            if (bloodthirst == true) {
+                System.out.println("THE PIECE IS OUT FOR BLOOD");
+                if (movimento.nivelDeViolencia()) {
+                    peca.mover(movimento);
+                }
+            }
+            else {
+                System.out.println("PIECE HAS MOVED");
+                peca.mover(movimento);
+            }
+
+            if (movimento.nivelDeViolencia()) {
+                System.out.println("KILL!");
+                if (movimento.podeMoverDeNovo(tabuleiro)) {
+                    System.out.println("IT CAN KILL AGAIN");
+                    bloodthirst = true;
+                    System.out.println("BLOODTHIRST ON");
+                }
+                else {
+                    bloodthirst = false;
+                    System.out.println("BLOODTHIRST OFF");
+                    vezBranca = !vezBranca;
+                }
+            }
+            else {
+                vezBranca = !vezBranca;
+            }
         }
     }
     /**

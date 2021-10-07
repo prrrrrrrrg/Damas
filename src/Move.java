@@ -9,13 +9,13 @@ public class Move {
 
     private Casa origem;
     private Casa destino;
-    private int podeMatar;
+    private boolean podeMatar;
     private Casa vitima;
     
     public Move(Casa origem, Casa destino) {
         this.origem = origem;
         this.destino = destino;
-        this.podeMatar = 0;
+        this.podeMatar = false;
         this.vitima = null;
     }
 
@@ -38,15 +38,21 @@ public class Move {
                     }
                     else if (deltaY == 2) {
                         if (deltaX > 0) {
+                            if (tabuleiro.getCasa(destino.getX() - 1, destino.getY() - 1).getPeca() == null) {
+                                return false;
+                            }
                             if (tabuleiro.getCasa(destino.getX() - 1, destino.getY() - 1).getPeca().getCor()) {
-                                podeMatar = 1;
+                                podeMatar = true;
                                 vitima = tabuleiro.getCasa(destino.getX() - 1, destino.getY() - 1);
                                 return true;
                             }
                         }
                         else if (deltaX < 0) {
+                            if (tabuleiro.getCasa(destino.getX() + 1, destino.getY() - 1).getPeca() == null) {
+                                return false;
+                            }
                             if (tabuleiro.getCasa(destino.getX() + 1, destino.getY() - 1).getPeca().getCor()) {
-                                podeMatar = 1;
+                                podeMatar = true;
                                 vitima = tabuleiro.getCasa(destino.getX() + 1, destino.getY() - 1);
                                 return true;
                             }
@@ -54,15 +60,21 @@ public class Move {
                     }
                     else if (deltaY == -2) {
                         if (deltaX > 0) {
+                            if (tabuleiro.getCasa(destino.getX() - 1, destino.getY() + 1).getPeca() == null) {
+                                return false;
+                            }
                             if (tabuleiro.getCasa(destino.getX() - 1, destino.getY() + 1).getPeca().getCor()) {
-                                podeMatar = 1;
+                                podeMatar = true;
                                 vitima = tabuleiro.getCasa(destino.getX() - 1, destino.getY() + 1);
                                 return true;
                             }
                         }
                         else if (deltaX < 0) {
+                            if (tabuleiro.getCasa(destino.getX() + 1, destino.getY() + 1).getPeca() == null) {
+                                return false;
+                            }
                             if (tabuleiro.getCasa(destino.getX() + 1, destino.getY() + 1).getPeca().getCor()) {
-                                podeMatar = 1;
+                                podeMatar = true;
                                 vitima = tabuleiro.getCasa(destino.getX() + 1, destino.getY() + 1);
                                 return true;
                             }
@@ -77,15 +89,21 @@ public class Move {
                     }
                     else if (deltaY == 2) {
                         if (deltaX > 0) {
+                            if (tabuleiro.getCasa(destino.getX() - 1, destino.getY() - 1).getPeca() == null) {
+                                return false;
+                            }
                             if (!tabuleiro.getCasa(destino.getX() - 1, destino.getY() - 1).getPeca().getCor()) {
-                                podeMatar = 1;
+                                podeMatar = true;
                                 vitima = tabuleiro.getCasa(destino.getX() - 1, destino.getY() - 1);
                                 return true;
                             }
                         }
                         else if (deltaX < 0) {
+                            if (tabuleiro.getCasa(destino.getX() + 1, destino.getY() - 1).getPeca() == null) {
+                                return false;
+                            }
                             if (!tabuleiro.getCasa(destino.getX() + 1, destino.getY() - 1).getPeca().getCor()) {
-                                podeMatar = 1;
+                                podeMatar = true;
                                 vitima = tabuleiro.getCasa(destino.getX() + 1, destino.getY() - 1);
                                 return true;
                             }
@@ -93,15 +111,21 @@ public class Move {
                     }
                     else if (deltaY == -2) {
                         if (deltaX > 0) {
+                            if (tabuleiro.getCasa(destino.getX() - 1, destino.getY() + 1).getPeca() == null) {
+                                return false;
+                            }
                             if (!tabuleiro.getCasa(destino.getX() - 1, destino.getY() + 1).getPeca().getCor()) {
-                                podeMatar = 1;
+                                podeMatar = true;
                                 vitima = tabuleiro.getCasa(destino.getX() - 1, destino.getY() + 1);
                                 return true;
                             }
                         }
                         else if (deltaX < 0) {
+                            if (tabuleiro.getCasa(destino.getX() + 1, destino.getY() + 1).getPeca() == null) {
+                                return false;
+                            }
                             if (!tabuleiro.getCasa(destino.getX() + 1, destino.getY() + 1).getPeca().getCor()) {
-                                podeMatar = 1;
+                                podeMatar = true;
                                 vitima = tabuleiro.getCasa(destino.getX() + 1, destino.getY() + 1);
                                 return true;
                             }
@@ -125,7 +149,7 @@ public class Move {
                                 }
                                 else if ((destino.getX() - cursorX == 1) && (destino.getY() - cursorY == 1) && (tabuleiro.getCasa(cursorX, cursorY).getPeca().getCor() != origem.getPeca().getCor())) {
                                     System.out.println("PASS 5B SUCCEEDED");
-                                    podeMatar = 1;
+                                    podeMatar = true;
                                     vitima = tabuleiro.getCasa(cursorX, cursorY);
                                     return true;
                                 }
@@ -149,7 +173,7 @@ public class Move {
                                 }
                                 else if ((destino.getX() - cursorX == 1) && (destino.getY() - cursorY == -1) && (tabuleiro.getCasa(cursorX, cursorY).getPeca().getCor() != origem.getPeca().getCor())) {
                                     System.out.println("PASS 5B SUCCEEDED");
-                                    podeMatar = 1;
+                                    podeMatar = true;
                                     vitima = tabuleiro.getCasa(cursorX, cursorY);
                                     return true;
                                 }
@@ -173,7 +197,7 @@ public class Move {
                                 }
                                 else if ((destino.getX() - cursorX == -1) && (destino.getY() - cursorY == 1) && (tabuleiro.getCasa(cursorX, cursorY).getPeca().getCor() != origem.getPeca().getCor())) {
                                     System.out.println("PASS 5B SUCCEEDED");
-                                    podeMatar = 1;
+                                    podeMatar = true;
                                     vitima = tabuleiro.getCasa(cursorX, cursorY);
                                     return true;
                                 }
@@ -197,13 +221,34 @@ public class Move {
                                 }
                                 else if ((destino.getX() - cursorX == -1) && (destino.getY() - cursorY == -1) && (tabuleiro.getCasa(cursorX, cursorY).getPeca().getCor() != origem.getPeca().getCor())) {
                                     System.out.println("PASS 5B SUCCEEDED");
-                                    podeMatar = 1;
+                                    podeMatar = true;
                                     vitima = tabuleiro.getCasa(cursorX, cursorY);
                                     return true;
                                 }
                                 else return false;
                             }
                         }
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean podeMoverDeNovo(Tabuleiro tabuleiro) {
+        /**
+         * check: are there possible legal moves from the checker?
+         *  if yes: check: are those moves killing moves?
+         *   if yes: YES MOVES
+         *   if no: NO MOVES
+         *  if no: NO MOVES
+         */
+        for (int i = 0; i <= 7; i++) {
+            for (int j = 0; j <= 7; j++) {
+                Move checker = new Move(destino, tabuleiro.getCasa(i, j));
+                if (checker.podeMover(tabuleiro)) {
+                    if (checker.nivelDeViolencia()) {
                         return true;
                     }
                 }
@@ -224,7 +269,7 @@ public class Move {
         return vitima;
     }
 
-    public int nivelDeViolencia() {
+    public boolean nivelDeViolencia() {
         return podeMatar;
     }
 
