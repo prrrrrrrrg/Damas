@@ -17,6 +17,11 @@ public class Move {
         this.podeMatar = 0;
     }
 
+    /**
+     * Checa se um movimento é possível ou não
+     * @param tabuleiro
+     * @return boolean confirmando se movimento é possível ou não
+     */
     public boolean podeMover(Tabuleiro tabuleiro) {
         int deltaX = destino.getX() - origem.getX();
         int deltaY = destino.getY() - origem.getY();
@@ -164,8 +169,6 @@ public class Move {
         }
         return false;
     }
-
-
 
         /**
          * check: diagonal move
