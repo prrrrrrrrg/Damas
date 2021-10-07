@@ -93,6 +93,7 @@ public class Move {
                                 else if ((destino.getX() - cursorX == 1) && (destino.getY() - cursorY == 1) && (tabuleiro.getCasa(cursorX, cursorY).getPeca().getCor() != origem.getPeca().getCor())) {
                                     System.out.println("PASS 5B SUCCEEDED");
                                     podeMatar = 1;
+                                    vitima = tabuleiro.getCasa(cursorX, cursorY);
                                     return true;
                                 }
                                 else return false;
@@ -116,6 +117,7 @@ public class Move {
                                 else if ((destino.getX() - cursorX == 1) && (destino.getY() - cursorY == -1) && (tabuleiro.getCasa(cursorX, cursorY).getPeca().getCor() != origem.getPeca().getCor())) {
                                     System.out.println("PASS 5B SUCCEEDED");
                                     podeMatar = 1;
+                                    vitima = tabuleiro.getCasa(cursorX, cursorY);
                                     return true;
                                 }
                                 else return false;
@@ -139,6 +141,7 @@ public class Move {
                                 else if ((destino.getX() - cursorX == -1) && (destino.getY() - cursorY == 1) && (tabuleiro.getCasa(cursorX, cursorY).getPeca().getCor() != origem.getPeca().getCor())) {
                                     System.out.println("PASS 5B SUCCEEDED");
                                     podeMatar = 1;
+                                    vitima = tabuleiro.getCasa(cursorX, cursorY);
                                     return true;
                                 }
                                 else return false;
@@ -162,6 +165,7 @@ public class Move {
                                 else if ((destino.getX() - cursorX == -1) && (destino.getY() - cursorY == -1) && (tabuleiro.getCasa(cursorX, cursorY).getPeca().getCor() != origem.getPeca().getCor())) {
                                     System.out.println("PASS 5B SUCCEEDED");
                                     podeMatar = 1;
+                                    vitima = tabuleiro.getCasa(cursorX, cursorY);
                                     return true;
                                 }
                                 else return false;
@@ -174,6 +178,22 @@ public class Move {
             }
         }
         return false;
+    }
+
+    public Casa getDestino() {
+        return destino;
+    }
+
+    public Casa getOrigem() {
+        return origem;
+    }
+
+    public Casa getVitima() {
+        return vitima;
+    }
+
+    public int nivelDeViolencia() {
+        return podeMatar;
     }
 
         /**

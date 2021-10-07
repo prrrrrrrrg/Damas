@@ -26,11 +26,16 @@ public class Peca {
      * Movimenta a peca para uma nova casa.
      * @param destino nova casa que ira conter esta peca.
      */
-    public void mover(Casa destino) {
+    public void mover(Move movimento) {
         casa.removerPeca();
-        escaladaSocial(destino);
-        destino.colocarPeca(this);
-        casa = destino;
+
+        escaladaSocial(movimento.getDestino());
+        if (movimento.nivelDeViolencia() == 1) {
+            movimento.getVitima().removerPeca();
+        }
+
+        movimento.getDestino().colocarPeca(this);
+        casa = movimento.getDestino();
     }
 
     /**

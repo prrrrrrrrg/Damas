@@ -61,10 +61,10 @@ public class Jogo {
         Casa origem = tabuleiro.getCasa(origemX, origemY);
         Casa destino = tabuleiro.getCasa(destinoX, destinoY);
         Peca peca = origem.getPeca();
-        Move move = new Move(origem, destino);
+        Move movimento = new Move(origem, destino);
     
-        if (move.podeMover(tabuleiro)) {
-            peca.mover(destino);
+        if (movimento.podeMover(tabuleiro)) {
+            peca.mover(movimento);
             vezBranca = !vezBranca;
         }
     }
