@@ -80,9 +80,10 @@ public class Move {
                     System.out.println("PASS 1 SUCCEEDED");
                     if ((destino.getX() > origem.getX()) && (destino.getY() > origem.getY())) {
                         System.out.println("PASS 2 SUCCEEDED");
-                        int cursorX = destino.getX();
-                        int cursorY = destino.getY();
-                        while ((cursorX > origem.getX()) && (cursorY > origem.getY())) {
+                        int cursorX = origem.getX();
+                        int cursorY = origem.getY();
+                        while ((cursorX < destino.getX()) && (cursorY < destino.getY())) {
+                            cursorX++; cursorY++;
                             System.out.println("PASS 3 SUCCEEDED... LOADING...");
                             if (tabuleiro.getCasa(cursorX, cursorY).getPeca() != null) {
                                 System.out.println("PASS 4 SUCCEEDED");
@@ -98,11 +99,82 @@ public class Move {
                                 }
                                 else return false;
                             }
-                            cursorX--; cursorY--;
                         }
                         return true;
                     }
                     else if ((destino.getX() > origem.getX()) && (destino.getY() < origem.getY())) {
+                        System.out.println("PASS 2 SUCCEEDED");
+                        int cursorX = origem.getX();
+                        int cursorY = origem.getY();
+                        while ((cursorX < destino.getX()) && (cursorY > destino.getY())) {
+                            cursorX++; cursorY--;
+                            System.out.println("PASS 3 SUCCEEDED... LOADING...");
+                            if (tabuleiro.getCasa(cursorX, cursorY).getPeca() != null) {
+                                System.out.println("PASS 4 SUCCEEDED");
+                                if ((tabuleiro.getCasa(cursorX - 1, cursorY + 1).getPeca() != null) && (tabuleiro.getCasa(cursorX - 1, cursorY + 1) != origem)) {
+                                    System.out.println("PASS 5 SUCCEEDED");
+                                    return false;
+                                }
+                                else if ((destino.getX() - cursorX == 1) && (destino.getY() - cursorY == -1) && (tabuleiro.getCasa(cursorX, cursorY).getPeca().getCor() != origem.getPeca().getCor())) {
+                                    System.out.println("PASS 5B SUCCEEDED");
+                                    podeMatar = 1;
+                                    vitima = tabuleiro.getCasa(cursorX, cursorY);
+                                    return true;
+                                }
+                                else return false;
+                            }
+                        }
+                        return true;
+                    }
+                    else if ((destino.getX() < origem.getX()) && (destino.getY() > origem.getY())) {
+                        System.out.println("PASS 2 SUCCEEDED");
+                        int cursorX = origem.getX();
+                        int cursorY = origem.getY();
+                        while ((cursorX > destino.getX()) && (cursorY < destino.getY())) {
+                            cursorX--; cursorY++;
+                            System.out.println("PASS 3 SUCCEEDED... LOADING...");
+                            if (tabuleiro.getCasa(cursorX, cursorY).getPeca() != null) {
+                                System.out.println("PASS 4 SUCCEEDED");
+                                if ((tabuleiro.getCasa(cursorX + 1, cursorY - 1).getPeca() != null) && (tabuleiro.getCasa(cursorX + 1, cursorY - 1) != origem)) {
+                                    System.out.println("PASS 5 SUCCEEDED");
+                                    return false;
+                                }
+                                else if ((destino.getX() - cursorX == -1) && (destino.getY() - cursorY == 1) && (tabuleiro.getCasa(cursorX, cursorY).getPeca().getCor() != origem.getPeca().getCor())) {
+                                    System.out.println("PASS 5B SUCCEEDED");
+                                    podeMatar = 1;
+                                    vitima = tabuleiro.getCasa(cursorX, cursorY);
+                                    return true;
+                                }
+                                else return false;
+                            }
+                        }
+                        return true;
+                    }
+                    else if ((destino.getX() < origem.getX()) && (destino.getY() < origem.getY())) {
+                        System.out.println("PASS 2 SUCCEEDED");
+                        int cursorX = origem.getX();
+                        int cursorY = origem.getY();
+                        while ((cursorX > destino.getX()) && (cursorY > destino.getY())) {
+                            cursorX--; cursorY--;
+                            System.out.println("PASS 3 SUCCEEDED... LOADING...");
+                            if (tabuleiro.getCasa(cursorX, cursorY).getPeca() != null) {
+                                System.out.println("PASS 4 SUCCEEDED");
+                                if ((tabuleiro.getCasa(cursorX + 1, cursorY + 1).getPeca() != null) && (tabuleiro.getCasa(cursorX + 1, cursorY + 1) != origem)) {
+                                    System.out.println("PASS 5 SUCCEEDED");
+                                    return false;
+                                }
+                                else if ((destino.getX() - cursorX == -1) && (destino.getY() - cursorY == -1) && (tabuleiro.getCasa(cursorX, cursorY).getPeca().getCor() != origem.getPeca().getCor())) {
+                                    System.out.println("PASS 5B SUCCEEDED");
+                                    podeMatar = 1;
+                                    vitima = tabuleiro.getCasa(cursorX, cursorY);
+                                    return true;
+                                }
+                                else return false;
+                            }
+                        }
+                        return true;
+                    }
+                    /*else if ((destino.getX() > origem.getX()) && (destino.getY() < origem.getY())) {
                         System.out.println("PASS 2 SUCCEEDED");
                         int cursorX = destino.getX();
                         int cursorY = destino.getY();
@@ -173,7 +245,7 @@ public class Move {
                             cursorX++; cursorY++;
                         }
                         return true;
-                    }
+                    }*/
                 }
             }
         }
