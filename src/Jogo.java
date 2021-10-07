@@ -63,9 +63,9 @@ public class Jogo {
         Casa origem = tabuleiro.getCasa(origemX, origemY);
         Casa destino = tabuleiro.getCasa(destinoX, destinoY);
         Peca peca = origem.getPeca();
-        Move movimento = new Move(origem, destino);
+        Move movimento = new Move(origem, destino, tabuleiro);
     
-        if (movimento.podeMover(tabuleiro)) {
+        if (movimento.podeMover()) {
             System.out.println("PIECE CAN MOVE");
             if (bloodthirst == true) {
                 System.out.println("THE PIECE IS OUT FOR BLOOD");
@@ -80,7 +80,7 @@ public class Jogo {
 
             if (movimento.nivelDeViolencia()) {
                 System.out.println("KILL!");
-                if (movimento.podeMoverDeNovo(tabuleiro)) {
+                if (movimento.podeMoverDeNovo()) {
                     System.out.println("IT CAN KILL AGAIN");
                     bloodthirst = true;
                     System.out.println("BLOODTHIRST ON");

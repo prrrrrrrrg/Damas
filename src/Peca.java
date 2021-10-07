@@ -27,12 +27,12 @@ public class Peca {
      * @param destino nova casa que ira conter esta peca.
      */
     public void mover(Move movimento) {
-        casa.removerPeca();
 
         escaladaSocial(movimento.getDestino());
         if (movimento.nivelDeViolencia()) {
-            movimento.getVitima().removerPeca();
+            movimento.removerTodasPecas();
         }
+        casa.removerPeca();
 
         movimento.getDestino().colocarPeca(this);
         casa = movimento.getDestino();
