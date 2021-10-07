@@ -1,6 +1,6 @@
 /**
  * Representa um movimento no Tabuleiro.
- * Possui duas Casas (origem, destino), e guarda informações sobre peças capturadas.
+ * Possui duas Casas (origem e destino), e informação sobre o movimento.
  * 
  * @author Lucas Alves
  * @author Luiz Biel
