@@ -8,11 +8,22 @@
 public class Jogo {
 
     private Tabuleiro tabuleiro;
-    public static boolean vezBranca;
+
+    /**
+     * quando esta variável é verdadeira, peças brancas podem mover
+     * quando é falsa, peças vermelhas podem mover
+     */
+    private boolean vezBranca;
+
+    /**
+     * quando esta variável é verdadeira, peças não podem fazer movimentos que não resultem em captura
+     */
+    private boolean bloodthirst;
 
     public Jogo() {
         tabuleiro = new Tabuleiro();
         vezBranca = true;
+        bloodthirst = false;
         criarPecas();
     }
     
@@ -57,21 +68,24 @@ public class Jogo {
      * @param destinoX linha da Casa de destino.
      * @param destinoY coluna da Casa de destino.
      */
-    public static boolean bloodthirst = false;
-    public static Casa novaOrigem;
-    // quando esta variável é verdadeira, peças não podem fazer movimentos que não resultem em captura
+    private Casa novaOrigem;
     public void moverPeca(int origemX, int origemY, int destinoX, int destinoY) {
         Casa origem = tabuleiro.getCasa(origemX, origemY);
         Casa destino = tabuleiro.getCasa(destinoX, destinoY);
         Peca peca = origem.getPeca();
         Move movimento = new Move(origem, destino, tabuleiro);
+
+        if (origem == destino) {
+            bloodthirst = false;
+            vezBranca = !vezBranca;
+        }
     
         if (movimento.podeMover()) {
             System.out.println("PIECE CAN MOVE");
             if (bloodthirst == true) {
                 System.out.println("THE PIECE IS OUT FOR BLOOD");
                 if (movimento.nivelDeViolencia()) {
-                    if (movimento.getOrigem() == novaOrigem) {
+                    if (origem == novaOrigem) {
                         peca.mover(movimento);
                     }
                 }
@@ -86,7 +100,7 @@ public class Jogo {
                 if (movimento.podeMoverDeNovo()) {
                     System.out.println("IT CAN KILL AGAIN");
                     bloodthirst = true;
-                    novaOrigem = movimento.getDestino();
+                    novaOrigem = destino;
                     System.out.println("BLOODTHIRST ON");
                 }
                 else {
@@ -105,5 +119,13 @@ public class Jogo {
      */
     public Tabuleiro getTabuleiro() {
         return tabuleiro;
+    }
+
+    public boolean getVez() {
+        return vezBranca;
+    }
+
+    public boolean getBloodthirst() {
+        return bloodthirst;
     }
 }

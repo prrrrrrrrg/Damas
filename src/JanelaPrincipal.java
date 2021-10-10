@@ -27,7 +27,7 @@ public class JanelaPrincipal extends JFrame {
 
         if (primeiroClique) {
             if (casaClicada.possuiPeca()) {
-                if (Jogo.vezBranca) {
+                if (jogo.getVez()) {
                     if (casaClicada.getCorPeca() == 0) {
                         casaClicadaOrigem = casaClicada;
                         casaClicadaOrigem.destacar();
@@ -55,8 +55,11 @@ public class JanelaPrincipal extends JFrame {
         }
         else {
             if (casaClicada.possuiPeca()) {
-                if(casaClicadaOrigem == casaClicada) {
-                    //Casa clicada possui peca selecionada, deseleciona, continua turno
+                if (casaClicadaOrigem == casaClicada) {
+                    if (jogo.getBloodthirst()) {
+                        jogo.moverPeca(casaClicadaOrigem.getPosicaoX(), casaClicadaOrigem.getPosicaoY(),
+                            casaClicadaOrigem.getPosicaoX(), casaClicadaOrigem.getPosicaoY());
+                    }
                     casaClicadaOrigem.atenuar();
                     primeiroClique = true;
                 }
