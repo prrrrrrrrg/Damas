@@ -136,12 +136,17 @@ public class Move {
                             if (tabuleiro.getCasa(cursorX, cursorY).getPeca() != null) {
                                 System.out.println("PASS 4 SUCCEEDED");
                                 if ((tabuleiro.getCasa(cursorX - 1, cursorY - 1).getPeca() != null) && (tabuleiro.getCasa(cursorX - 1, cursorY - 1) != origem)) {
-                                    System.out.println("PASS 5 SUCCEEDED");
+                                    System.out.println("PASS 5 FAILED (A)");
+                                    return false;
+                                }
+                                else if (tabuleiro.getCasa(cursorX + 1, cursorY + 1).getPeca() != null) {
+                                    System.out.println("PASS 5 FAILED (B)");
                                     return false;
                                 }
                                 else if (tabuleiro.getCasa(cursorX, cursorY).getPeca().getCor() != origem.getPeca().getCor()) {
-                                    System.out.println("PASS 5B SUCCEEDED");
+                                    System.out.println("PASS 5 SUCCEEDED");
                                     podeMatar = true;
+                                    return true;
                                 }
                                 else return false;
                             }
@@ -158,11 +163,15 @@ public class Move {
                             if (tabuleiro.getCasa(cursorX, cursorY).getPeca() != null) {
                                 System.out.println("PASS 4 SUCCEEDED");
                                 if ((tabuleiro.getCasa(cursorX - 1, cursorY + 1).getPeca() != null) && (tabuleiro.getCasa(cursorX - 1, cursorY + 1) != origem)) {
-                                    System.out.println("PASS 5 SUCCEEDED");
+                                    System.out.println("PASS 5 FAILED (A)");
+                                    return false;
+                                }
+                                else if (tabuleiro.getCasa(cursorX + 1, cursorY - 1).getPeca() != null) {
+                                    System.out.println("PASS 5 FAILED (B)");
                                     return false;
                                 }
                                 else if (tabuleiro.getCasa(cursorX, cursorY).getPeca().getCor() != origem.getPeca().getCor()) {
-                                    System.out.println("PASS 5B SUCCEEDED");
+                                    System.out.println("PASS 5 SUCCEEDED");
                                     podeMatar = true;
                                     return true;
                                 }
@@ -181,11 +190,15 @@ public class Move {
                             if (tabuleiro.getCasa(cursorX, cursorY).getPeca() != null) {
                                 System.out.println("PASS 4 SUCCEEDED");
                                 if ((tabuleiro.getCasa(cursorX + 1, cursorY - 1).getPeca() != null) && (tabuleiro.getCasa(cursorX + 1, cursorY - 1) != origem)) {
-                                    System.out.println("PASS 5 SUCCEEDED");
+                                    System.out.println("PASS 5 FAILED (A)");
+                                    return false;
+                                }
+                                else if (tabuleiro.getCasa(cursorX - 1, cursorY + 1).getPeca() != null) {
+                                    System.out.println("PASS 5 FAILED (B)");
                                     return false;
                                 }
                                 else if (tabuleiro.getCasa(cursorX, cursorY).getPeca().getCor() != origem.getPeca().getCor()) {
-                                    System.out.println("PASS 5B SUCCEEDED");
+                                    System.out.println("PASS 5 SUCCEEDED");
                                     podeMatar = true;
                                     return true;
                                 }
@@ -202,13 +215,16 @@ public class Move {
                             cursorX--; cursorY--;
                             System.out.println("PASS 3 SUCCEEDED... LOADING...");
                             if (tabuleiro.getCasa(cursorX, cursorY).getPeca() != null) {
-                                System.out.println("PASS 4 SUCCEEDED");
                                 if ((tabuleiro.getCasa(cursorX + 1, cursorY + 1).getPeca() != null) && (tabuleiro.getCasa(cursorX + 1, cursorY + 1) != origem)) {
-                                    System.out.println("PASS 5 SUCCEEDED");
+                                    System.out.println("PASS 5 FAILED (A)");
+                                    return false;
+                                }
+                                else if (tabuleiro.getCasa(cursorX - 1, cursorY - 1).getPeca() != null) {
+                                    System.out.println("PASS 5 FAILED (B)");
                                     return false;
                                 }
                                 else if (tabuleiro.getCasa(cursorX, cursorY).getPeca().getCor() != origem.getPeca().getCor()) {
-                                    System.out.println("PASS 5B SUCCEEDED");
+                                    System.out.println("PASS 5 SUCCEEDED");
                                     podeMatar = true;
                                     return true;
                                 }
