@@ -34,7 +34,12 @@ public class JanelaPrincipal extends JFrame {
                         primeiroClique = false;
                     }
                     else {
-                        JOptionPane.showMessageDialog(this, "Vez do Jogador 1. Clique em uma peça branca.");
+                        if (jogo.getBloodthirst()) {
+                            JOptionPane.showMessageDialog(this, "Jogador 1 ainda pode capturar uma peça. Se não deseja capturar, clique em qualquer peça branca duas vezes.");
+                        }
+                        else {
+                            JOptionPane.showMessageDialog(this, "Vez do Jogador 1. Clique em uma peça branca.");
+                        }
                     }
                 }
                 else {
@@ -44,7 +49,12 @@ public class JanelaPrincipal extends JFrame {
                         primeiroClique = false;
                     }
                     else {
-                        JOptionPane.showMessageDialog(this, "Vez do Jogador 2. Clique em uma peça vermelha.");
+                        if (jogo.getBloodthirst()) {
+                            JOptionPane.showMessageDialog(this, "Jogador 2 ainda pode capturar uma peça. Se não deseja capturar, clique em qualquer peça vermelha duas vezes.");
+                        }
+                        else {
+                            JOptionPane.showMessageDialog(this, "Vez do Jogador 2. Clique em uma peça branca.");
+                        }
                     }
                 }
             }
