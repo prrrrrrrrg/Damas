@@ -8,9 +8,11 @@
 public class Jogo {
 
     private Tabuleiro tabuleiro;
+    public static boolean vezBranca;
 
     public Jogo() {
         tabuleiro = new Tabuleiro();
+        vezBranca = true;
         criarPecas();
     }
     
@@ -55,7 +57,6 @@ public class Jogo {
      * @param destinoX linha da Casa de destino.
      * @param destinoY coluna da Casa de destino.
      */
-    public static boolean vezBranca = true;
     public static boolean bloodthirst = false;
     public static Casa novaOrigem;
     // quando esta variável é verdadeira, peças não podem fazer movimentos que não resultem em captura
