@@ -15,7 +15,6 @@ public class JanelaPrincipal extends JFrame {
 
     private Jogo jogo;
     private boolean primeiroClique;
-    private boolean turnoSwitch;
     private CasaGUI casaClicadaOrigem;
     private CasaGUI casaClicadaDestino;
     
@@ -28,7 +27,7 @@ public class JanelaPrincipal extends JFrame {
 
         if (primeiroClique) {
             if (casaClicada.possuiPeca()) {
-                if (turnoSwitch == false) {
+                if (Jogo.vezBranca) {
                     if (casaClicada.getCorPeca() == 0) {
                         casaClicadaOrigem = casaClicada;
                         casaClicadaOrigem.destacar();
@@ -56,16 +55,24 @@ public class JanelaPrincipal extends JFrame {
         }
         else {
             if (casaClicada.possuiPeca()) {
-                JOptionPane.showMessageDialog(this, "Não é permitido mover para cima de outras peças.");
+                if(casaClicadaOrigem == casaClicada) {
+                    //Casa clicada possui peca selecionada, deseleciona, continua turno
+                    casaClicadaOrigem.atenuar();
+                    primeiroClique = true;
+                }
+                else {
+                    //Casa clicada possui peca diferente da peca selecionada, nao pode mover, continua turno
+                    JOptionPane.showMessageDialog(this, "Não é permitido mover para cima de outras peças.");
+                }
             }
             else {
-                casaClicadaDestino = casaClicada;
-                jogo.moverPeca(casaClicadaOrigem.getPosicaoX(), casaClicadaOrigem.getPosicaoY(),
+                    casaClicadaDestino = casaClicada;
+                    jogo.moverPeca(casaClicadaOrigem.getPosicaoX(), casaClicadaOrigem.getPosicaoY(),
                         casaClicadaDestino.getPosicaoX(), casaClicadaDestino.getPosicaoY());
-                casaClicadaOrigem.atenuar();
-                primeiroClique = true;
-                turnoSwitch = !turnoSwitch;
-                atualizar();
+                    casaClicadaOrigem.atenuar();
+                    primeiroClique = true;
+                    atualizar();
+                
             }
         }
     }
@@ -78,7 +85,6 @@ public class JanelaPrincipal extends JFrame {
         initComponents();
 
         this.primeiroClique = true;
-        this.turnoSwitch = false;
         this.casaClicadaOrigem = null;
         this.casaClicadaDestino = null;
         criarNovoJogo();

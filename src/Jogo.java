@@ -24,7 +24,7 @@ public class Jogo {
             if ((r % 2) != 0) c++; // aumenta COLUNA por 1 se LINHA for IMPAR (ou seja, começa com casa branca)
             for (; c <= 7; c += 2) { //posiciona COLUNA
                 Casa casaN = tabuleiro.getCasa(c, r);
-                Peca pecaN = new Peca(casaN, Peca.PEDRA_BRANCA);
+                Peca pecaN = new Peca(casaN, 0);
             }
         }
 
@@ -33,7 +33,7 @@ public class Jogo {
             if ((r % 2) != 0) c++; 
             for (; c <= 7; c += 2) { 
                 Casa casaN = tabuleiro.getCasa(c, r);
-                Peca pecaN = new Peca(casaN, Peca.PEDRA_VERMELHA);
+                Peca pecaN = new Peca(casaN, 2);
             }
         }
 
@@ -55,13 +55,47 @@ public class Jogo {
      * @param destinoX linha da Casa de destino.
      * @param destinoY coluna da Casa de destino.
      */
+    public static boolean vezBranca = true;
+    //comeca com as brancas.
+    public static boolean bloodthirst = false;
+    // quando esta variável é verdadeira, peças não podem fazer movimentos que não resultem em captura
     public void moverPeca(int origemX, int origemY, int destinoX, int destinoY) {
         Casa origem = tabuleiro.getCasa(origemX, origemY);
         Casa destino = tabuleiro.getCasa(destinoX, destinoY);
         Peca peca = origem.getPeca();
-        peca.mover(destino);
-    }
+        Move movimento = new Move(origem, destino, tabuleiro);
     
+        if (movimento.podeMover()) {
+            System.out.println("PIECE CAN MOVE");
+            if (bloodthirst == true) {
+                System.out.println("THE PIECE IS OUT FOR BLOOD");
+                if (movimento.nivelDeViolencia()) {
+                    peca.mover(movimento);
+                }
+            }
+            else {
+                System.out.println("PIECE HAS MOVED");
+                peca.mover(movimento);
+            }
+
+            if (movimento.nivelDeViolencia()) {
+                System.out.println("KILL!");
+                if (movimento.podeMoverDeNovo()) {
+                    System.out.println("IT CAN KILL AGAIN");
+                    bloodthirst = true;
+                    System.out.println("BLOODTHIRST ON");
+                }
+                else {
+                    bloodthirst = false;
+                    System.out.println("BLOODTHIRST OFF");
+                    vezBranca = !vezBranca;
+                }
+            }
+            else {
+                vezBranca = !vezBranca;
+            }
+        }
+    }
     /**
      * @return o Tabuleiro em jogo.
      */

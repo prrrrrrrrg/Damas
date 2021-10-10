@@ -26,10 +26,37 @@ public class Peca {
      * Movimenta a peca para uma nova casa.
      * @param destino nova casa que ira conter esta peca.
      */
-    public void mover(Casa destino) {
+    public void mover(Move movimento) {
+
+        escaladaSocial(movimento.getDestino());
+        if (movimento.nivelDeViolencia()) {
+            movimento.removerTodasPecas();
+        }
         casa.removerPeca();
-        destino.colocarPeca(this);
-        casa = destino;
+
+        movimento.getDestino().colocarPeca(this);
+        casa = movimento.getDestino();
+    }
+
+    /**
+     * Checa se uma pedra pode ser promovida para dama, e se sim, promove ela.
+     * @param destino
+     */
+    public void escaladaSocial(Casa destino) {
+        if (getTipo() == 0) {
+            if (destino.getY() == 7) {
+                setTipo(1);
+            }
+        }
+        if (getTipo() == 2) {
+            if (destino.getY() == 0) {
+                setTipo(3);
+            }
+        }
+    }
+
+    public void setTipo(int novoTipo) {
+        tipo = novoTipo;
     }
 
     /**
@@ -42,5 +69,16 @@ public class Peca {
      */
     public int getTipo() {
         return tipo;
+    }
+
+    /**
+     * Retorna a cor da peça.
+     * @return false, se a cor for branca
+     * @return true, se a cor for vermelha
+     */
+    public boolean getCor() {
+        if ((tipo == 0) || (tipo == 1)) return false;
+        if ((tipo == 2) || (tipo == 3)) return true;
+        return false;
     }
 }
