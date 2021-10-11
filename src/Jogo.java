@@ -102,4 +102,67 @@ public class Jogo {
     public Tabuleiro getTabuleiro() {
         return tabuleiro;
     }
+    
+    /**RETURN 0 = NINGUEM GANHOU AINDA;
+    *RETURN 1 = VERMELHAS GANHARAM;
+    *RETURN 2 = BRANCAS GANHARAM;
+    */
+    public int alguemGanhou(){
+        int pecasBrancas = 0;
+        int pecasVermelhas = 0;
+        int pecasBrancasimpedidas = 0;
+        int pecasVermelhasimpedidas = 0;
+        //conta todas as casas do tabuleiro
+        for (int x = 0; x < 8; x++) {
+            for (int y = 0; y < 8; y++) {
+                //conta pecas brancas
+                if(tabuleiro.getCasa(x,y).getPeca().getCor() == false) {
+                    pecasBrancas++;
+                    // conta pecas brancas que nao podem se mover
+                    for (int i = 0; i < 8; i++) {
+                        for (int j = 0; j < 8; j++) {
+                            Move impedido = new Move(tabuleiro.getCasa(x, y), tabuleiro.getCasa(i, j), tabuleiro);
+                            if(impedido.podeMover() == false) {
+                                pecasBrancasimpedidas++;
+                            }
+                        }
+                    }
+                    if(pecasBrancas == pecasBrancasimpedidas) {
+                        //n de pecas brancas = ao n de pecas brancas q n pode se mover
+                        return 1;
+                    }
+                    else {
+                        return 0;
+                    }
+                }
+                else {
+                    //conta pecas vermelhas
+                    if(tabuleiro.getCasa(x,y).getPeca().getCor() == true) {
+                        pecasVermelhas++;
+                        // testa todos movimentos de uma peca vermelha
+                        for (int i = 0; i < 8; i++) {
+                            for (int j = 0; j < 8; j++) {
+                                Move impedido = new Move(tabuleiro.getCasa(x, y), tabuleiro.getCasa(i, j), tabuleiro);
+                                if(impedido.podeMover() == false) {
+                                pecasVermelhasimpedidas++;
+                                }
+                            }
+                        }
+                        if(pecasVermelhas == pecasVermelhasimpedidas) {
+                        //n de pecas vermelhas = ao n de pecas vermelhas q n pode se mover
+                            return 2;
+                        }
+                        else {
+                            return 0;
+                        }
+                    }
+                }
+            }
+        }
+        System.out.println("PECAS BRANCAS RESTANTES:" + pecasBrancas);
+        System.out.println("PECAS BRANCASIMP RESTANTES:" + pecasBrancasimpedidas);
+        System.out.println("PECAS VERMELHAS RESTANTES:" + pecasVermelhas);
+        System.out.println("PECAS VERMELHASIMP RESTANTES:" + pecasVermelhasimpedidas);
+        return 0;
+    }
 }

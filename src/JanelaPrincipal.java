@@ -25,54 +25,62 @@ public class JanelaPrincipal extends JFrame {
      */
     public void reagir(CasaGUI casaClicada) {
 
-        if (primeiroClique) {
-            if (casaClicada.possuiPeca()) {
-                if (Jogo.vezBranca) {
-                    if (casaClicada.getCorPeca() == 0) {
-                        casaClicadaOrigem = casaClicada;
-                        casaClicadaOrigem.destacar();
-                        primeiroClique = false;
-                    }
-                    else {
-                        JOptionPane.showMessageDialog(this, "Vez do Jogador 1. Clique em uma peça branca.");
-                    }
-                }
-                else {
-                    if (casaClicada.getCorPeca() == 1) {
-                        casaClicadaOrigem = casaClicada;
-                        casaClicadaOrigem.destacar();
-                        primeiroClique = false;
-                    }
-                    else {
-                        JOptionPane.showMessageDialog(this, "Vez do Jogador 2. Clique em uma peça vermelha.");
-                    }
-                }
-            }
-            else {
-                // clicou em uma posi�?o inv�lida, ent?o n?o faz nada.
-                JOptionPane.showMessageDialog(this, "Clique em uma peça.");
-            }
+        
+        if (jogo.alguemGanhou() == 2) {
+            JOptionPane.showMessageDialog(this, "Brancas ganharam!");
         }
-        else {
-            if (casaClicada.possuiPeca()) {
-                if(casaClicadaOrigem == casaClicada) {
-                    //Casa clicada possui peca selecionada, deseleciona, continua turno
-                    casaClicadaOrigem.atenuar();
-                    primeiroClique = true;
+        else if (jogo.alguemGanhou() == 1) {
+            JOptionPane.showMessageDialog(this, "Vermelhas ganharam!");
+        }
+        else if (jogo.alguemGanhou() == 0) {
+            if (primeiroClique) {
+                if (casaClicada.possuiPeca()) {
+                    if (Jogo.vezBranca) {
+                        if (casaClicada.getCorPeca() == 0) {
+                            casaClicadaOrigem = casaClicada;
+                            casaClicadaOrigem.destacar();
+                            primeiroClique = false;
+                        }
+                        else {
+                            JOptionPane.showMessageDialog(this, "Vez do Jogador 1. Clique em uma peça branca.");
+                        }
+                    }
+                    else {
+                        if (casaClicada.getCorPeca() == 1) {
+                            casaClicadaOrigem = casaClicada;
+                            casaClicadaOrigem.destacar();
+                            primeiroClique = false;
+                        }
+                        else {
+                            JOptionPane.showMessageDialog(this, "Vez do Jogador 2. Clique em uma peça vermelha.");
+                        }
+                    }
                 }
                 else {
-                    //Casa clicada possui peca diferente da peca selecionada, nao pode mover, continua turno
-                    JOptionPane.showMessageDialog(this, "Não é permitido mover para cima de outras peças.");
+                    // clicou em uma posi�?o inv�lida, ent?o n?o faz nada.
+                    JOptionPane.showMessageDialog(this, "Clique em uma peça.");
                 }
             }
             else {
-                    casaClicadaDestino = casaClicada;
-                    jogo.moverPeca(casaClicadaOrigem.getPosicaoX(), casaClicadaOrigem.getPosicaoY(),
-                        casaClicadaDestino.getPosicaoX(), casaClicadaDestino.getPosicaoY());
-                    casaClicadaOrigem.atenuar();
-                    primeiroClique = true;
-                    atualizar();
-                
+                if (casaClicada.possuiPeca()) {
+                    if(casaClicadaOrigem == casaClicada) {
+                        //Casa clicada possui peca selecionada, deseleciona, continua turno
+                        casaClicadaOrigem.atenuar();
+                        primeiroClique = true;
+                    }
+                    else {
+                        //Casa clicada possui peca diferente da peca selecionada, nao pode mover, continua turno
+                        JOptionPane.showMessageDialog(this, "Não é permitido mover para cima de outras peças.");
+                    }
+                }
+                else {
+                        casaClicadaDestino = casaClicada;
+                        jogo.moverPeca(casaClicadaOrigem.getPosicaoX(), casaClicadaOrigem.getPosicaoY(),
+                            casaClicadaDestino.getPosicaoX(), casaClicadaDestino.getPosicaoY());
+                        casaClicadaOrigem.atenuar();
+                        primeiroClique = true;
+                        atualizar();
+                }
             }
         }
     }
