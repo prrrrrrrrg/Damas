@@ -1,7 +1,7 @@
 # Regras Simplificadas do Jogo de Damas
 
 
-1. Objetivo: imobilizar ou capturar todas as peças do adversário.
+1. ~~Objetivo: imobilizar ou capturar todas as peças do adversário.~~
 2. ~~O Jogo de Damas é praticado em um tabuleiro de 64 casas~~ ou de 100 casas, claras e escuras.
 3. ~~A grande diagonal (escura), deve ficar sempre à esquerda de cada jogador.~~
 4. ~~O lance inicial cabe sempre ao jogador que estiver com as peças claras.~~
@@ -12,8 +12,8 @@
 9. ~~A captura não é obrigatória. Não existe sopro. Duas ou mais peças juntas, na mesma diagonal não podem ser capturadas.~~
 10. ~~A pedra captura a Dama e a Dama captura a pedra. Pedra e Dama têm o mesmo valor para capturarem ou serem capturadas.~~
 11. ~~A pedra e a Dama podem capturar, tanto para frente, como para trás, uma ou mais peças.~~
-12. Se no mesmo lance se apresentar mais de uma possibilidade de capturar peças, não é obrigatório executar o lance que capture o maior número de peças (Lei da Maioria).
-13. A pedra que durante o lance de captura de várias peças, apenas passe por qualquer casa de coroação, sem aí parar, é opcional ser promovida à Dama.
+12. ~~Se no mesmo lance se apresentar mais de uma possibilidade de capturar peças, não é obrigatório executar o lance que capture o maior número de peças (Lei da Maioria).~~
+13. ~~A pedra que durante o lance de captura de várias peças, apenas passe por qualquer casa de coroação, sem aí parar, é opcional ser promovida à Dama.~~ (?)
 14. ~~Na execução do lance de captura, é permitido passar mais de uma vez pela mesma casa vazia.~~
 15. ~~Na execução do lance de captura, não é permitido capturar a mesma peça mais de uma vez mas é permitido as peças capturadas poderem ser retiradas do tabuleiro antes de completar o lance de captura.~~
 16. Opcional: Empate – 64 casas - Após 20 (vinte) lances sucessivos de Damas de cada jogador, sem captura ou deslocamento de pedra, a partida é declarada empatada. 100 casas - Após 25 (vinte e cinco) lances sucessivos de Damas de cada jogador, sem captura ou deslocamento de pedra, a partida é declarada empatada.

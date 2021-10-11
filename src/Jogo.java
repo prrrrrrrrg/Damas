@@ -37,7 +37,7 @@ public class Jogo {
             if ((r % 2) != 0) c++; // aumenta COLUNA por 1 se LINHA for IMPAR (ou seja, começa com casa branca)
             for (; c <= 7; c += 2) { //posiciona COLUNA
                 Casa casaN = tabuleiro.getCasa(c, r);
-                Peca pecaN = new Peca(casaN, 0);
+                new Peca(casaN, 0);
             }
         }
 
@@ -46,17 +46,9 @@ public class Jogo {
             if ((r % 2) != 0) c++; 
             for (; c <= 7; c += 2) { 
                 Casa casaN = tabuleiro.getCasa(c, r);
-                Peca pecaN = new Peca(casaN, 2);
+                new Peca(casaN, 2);
             }
         }
-
-        /*
-        Casa casa1 = tabuleiro.getCasa(0, 0);
-        Peca peca1 = new Peca(casa1, Peca.PEDRA_BRANCA);
-
-        Casa casa2 = tabuleiro.getCasa(7, 7);
-        Peca peca2 = new Peca(casa2, Peca.DAMA_VERMELHA);
-        */
     }
     
     /**
@@ -75,15 +67,16 @@ public class Jogo {
         Peca peca = origem.getPeca();
         Move movimento = new Move(origem, destino, tabuleiro);
 
+        // se a origem é igual ao destino, desativar bloodthirst e passar a vez
         if (origem == destino) {
             bloodthirst = false;
             vezBranca = !vezBranca;
         }
     
-        if (movimento.podeMover()) {
-            System.out.println("PIECE CAN MOVE");
+        if (movimento.podeMover()) { // se movimento é possível
             if (bloodthirst == true) {
-                System.out.println("THE PIECE IS OUT FOR BLOOD");
+                // se bloodthirst estiver ativo, só mover se a mesma peça do movimento anterior
+                // esta fazendo uma nova captura
                 if (movimento.nivelDeViolencia()) {
                     if (origem == novaOrigem) {
                         peca.mover(movimento);
@@ -91,21 +84,17 @@ public class Jogo {
                 }
             }
             else {
-                System.out.println("PIECE HAS MOVED");
                 peca.mover(movimento);
             }
 
             if (movimento.nivelDeViolencia()) {
-                System.out.println("KILL!");
+                // se o movimento for uma captura, e for possivel fazer outra captura, ativar bloodthirst
                 if (movimento.podeMoverDeNovo()) {
-                    System.out.println("IT CAN KILL AGAIN");
                     bloodthirst = true;
                     novaOrigem = destino;
-                    System.out.println("BLOODTHIRST ON");
                 }
                 else {
                     bloodthirst = false;
-                    System.out.println("BLOODTHIRST OFF");
                     vezBranca = !vezBranca;
                 }
             }
@@ -114,6 +103,52 @@ public class Jogo {
             }
         }
     }
+
+    /**
+     * Variável que checa se vitória foi obtida ou não, 
+     * checando se um dos jogadores tem movimentos possíveis.
+     * @return 0 se nenhum jogador tiver vencido
+     * @return 1 se o time vermelho tiver vencido
+     * @return 2 se o time branco tiver vencido
+     */
+    public int checarVitoria() {
+        int timeBranco = 0;
+        int timeVermelho = 0;
+
+        for (int i = 0; i <= 7; i++) {
+            for (int j = 0; j <= 7; j++) {
+                for (int k = 0; k <= 7; k++) {
+                    for (int l = 0; l <= 7; l++) {
+                        Casa origem = tabuleiro.getCasa(i, j);
+                        Casa destino = tabuleiro.getCasa(k, l);
+                        Move movimento = new Move(origem, destino, tabuleiro);
+
+                        if (origem.getPeca() != null) {
+                            if (movimento.podeMover()) {
+                                if (origem.getPeca().getCor()) {
+                                    timeVermelho++;
+                                }
+                                else {
+                                    timeBranco++;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        if (timeBranco == 0) {
+            return 1;
+        }
+        else if (timeVermelho == 0) {
+            return 2;
+        }
+        else return 0;
+
+
+    }
+
     /**
      * @return o Tabuleiro em jogo.
      */
